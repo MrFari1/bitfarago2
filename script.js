@@ -1,5 +1,5 @@
 var sakktabla = document.getElementById("tabla");
-var aktkep = document.createElement("img");
+var aktkep = ""
 
 function gen(){
     let k = 0;
@@ -33,43 +33,36 @@ function babulerakas(){
         kep.src = "kepek/paraszt.png";
         document.getElementById(i).appendChild(kep);
     }
-    document.getElementById(0).innerHTML="<img src = 'kepek/bastya.png'></img>";
-    document.getElementById(7).innerHTML="<img src = 'kepek/bastya.png'></img>";
-    document.getElementById(88).innerHTML="<img src = 'kepek/bastya.png'></img>";
-    document.getElementById(95).innerHTML="<img src = 'kepek/bastya.png'></img>";
-    document.getElementById(1).innerHTML="<img src = 'kepek/lo.png'></img>";
-    document.getElementById(6).innerHTML="<img src = 'kepek/lo.png'></img>";
-    document.getElementById(89).innerHTML="<img src = 'kepek/lo.png'></img>";
-    document.getElementById(94).innerHTML="<img src = 'kepek/lo.png'></img>";
-    document.getElementById(2).innerHTML="<img src = 'kepek/futo.png'></img>";
-    document.getElementById(5).innerHTML="<img src = 'kepek/futo.png'></img>";
-    document.getElementById(90).innerHTML="<img src = 'kepek/futo.png'></img>";
-    document.getElementById(93).innerHTML="<img src = 'kepek/futo.png'></img>";
-    document.getElementById(3).innerHTML="<img src = 'kepek/kiralyno.png'></img>";
-    document.getElementById(91).innerHTML="<img src = 'kepek/kiralyno.png'></img>";
-    document.getElementById(4).innerHTML="<img src = 'kepek/kiraly.png'></img>";
-    document.getElementById(92).innerHTML="<img src = 'kepek/kiraly.png'></img>";
+
+    let babuk=["bastya", "lo", "futo", "kiraly", "kiralyno"]
+    for (let i = 0; i < 4; i++) {
+        document.getElementById(i).innerHTML="<img src = 'kepek/"+babuk[i]+".png'></img>"
+        document.getElementById(7-i).innerHTML="<img src = 'kepek/"+babuk[i]+".png'></img>"
+        document.getElementById(i+88).innerHTML="<img src = 'kepek/"+babuk[i]+".png'></img>"
+        document.getElementById((7-i)+88).innerHTML="<img src = 'kepek/"+babuk[i]+".png'></img>"
+    }
+    for (let i = 3; i < 5; i++) {
+        document.getElementById(i).innerHTML="<img src = 'kepek/"+babuk[i]+".png'></img>"
+        document.getElementById(i+88).innerHTML="<img src = 'kepek/"+babuk[i]+".png'></img>"
+    }
 }
 
 function kiszedes(vakond){
     if(vakond.innerHTML!=""){
-        console.log("szia"); 
+        console.log("babu");
         aktkep = vakond.innerHTML;
         vakond.innerHTML = "";
-        console.log(aktkep);
-        aktid = vakond.id;
-        console.log(aktid);
     }
     if(vakond.innerHTML==""){
+        console.log("ures");
         berakas(vakond.id)
     }
 
 }
+
 function berakas(aktid){
     if(document.getElementById(aktid).innerHTML == ""){
         document.getElementById(aktid).innerHTML = aktkep;    
-        console.log("jo lesz");
-        aktid = 0;
         aktkep=""
     }
 }

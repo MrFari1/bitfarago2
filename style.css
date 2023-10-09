@@ -2,19 +2,17 @@ tr:nth-child(odd) td:nth-child(even),
 tr:nth-child(even) td:nth-child(odd)
 {
     background-color: gray;
-    color: white;
 }
 tr:nth-child(even) td:nth-child(even),
 tr:nth-child(odd) td:nth-child(odd)
 {
     background-color: white;
-    color: black;
 }
 #tabla{
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 390px;
     border-collapse: collapse;
-    border: 8px solid brown;
+    border: 5px solid black;
+    border-radius: 10px;
 }
 h1{
     display: flex;
@@ -26,4 +24,30 @@ img{
 }
 .fekete img{
     filter: invert(1);
+}
+
+#main{
+    display: flex;
+}
+
+#kartyak img{
+    height: 300px;
+    width: 150px;
+    border-radius: 15px;
+}
+
+input{
+    width: 100px;
+    border-radius: 6px;
+}
+
+body{
+    background-image: url("kepek/bg.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+label, h2, h1{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }

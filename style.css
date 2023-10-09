@@ -1,0 +1,29 @@
+tr:nth-child(odd) td:nth-child(even),
+tr:nth-child(even) td:nth-child(odd)
+{
+    background-color: gray;
+    color: white;
+}
+tr:nth-child(even) td:nth-child(even),
+tr:nth-child(odd) td:nth-child(odd)
+{
+    background-color: white;
+    color: black;
+}
+#tabla{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border: 8px solid brown;
+}
+h1{
+    display: flex;
+    justify-content: center;
+}
+img{
+    width: 45px;
+    height: 45px;
+}
+.fekete img{
+    filter: invert(1);
+}

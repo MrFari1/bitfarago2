@@ -22,7 +22,7 @@ img{
     width: 45px;
     height: 45px;
 }
-.fekete img{
+.fekete{
     filter: invert(1);
 }
 

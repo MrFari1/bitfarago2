@@ -1,12 +1,9 @@
 var sakktabla = document.getElementById("tabla");
 var aktkep = "";
 var korszamlalo = 0;
-var kor;
-
-function getkor(){
-    kor = document.getElementById("round").value;
-}
-
+var kor=document.getElementById("round").value;
+var feherpont=0;
+var feketepont=0;
 
 function gen(){
     let k = 0;
@@ -14,8 +11,8 @@ function gen(){
         let tr=document.createElement("tr");
         for (let j = 0; j < 8; j++) {
             let td = document.createElement("td")
-            td.style.width = "50px";
-            td.style.height = "50px";
+            td.style.width = "60px";
+            td.style.height = "60px";
             td.id = Number(k)
             tr.appendChild(td)
             k++;
@@ -44,21 +41,11 @@ function babulerakas(){
     }
 }
 
-function vanbabu(){
-    for (let i = 0; i < 96; i++) {
-        //console.log(document.getElementById(i));
-        document.getElementById(i).innerHTML==""?document.getElementById(i).setAttribute("onclick","berakas(this)"):document.getElementById(i).setAttribute("onclick","kiszedes(this)")
-    }
-    whichforduls();
-}
-
 function kiszedes(td){
     if(td.innerHTML!="" && aktkep==""){
-        console.log("babu");
         aktkep = td.innerHTML;
         td.innerHTML = "";
     }
-    console.log(aktkep);
 }
 
 function berakas(td){
@@ -67,7 +54,13 @@ function berakas(td){
         aktkep=""
     }
     vanbabu();
-    korszamlalo++;
+}
+
+function vanbabu(){
+    for (let i = 0; i < 96; i++) {
+        document.getElementById(i).innerHTML=="" ? document.getElementById(i).setAttribute("onclick","berakas(this)") : document.getElementById(i).setAttribute("onclick","kiszedes(this)")
+    }
+    whichforduls();
 }
 
 function whichforduls(){
@@ -76,15 +69,14 @@ function whichforduls(){
     if(korszamlalo%2==0){
         console.log("feher kor");
         for (let i = 0; i < 96; i++) {
-            if(document.getElementById(i).innerHTML.includes("fekete") &&!document.getElementById(i).innerHTML==""){;
+            if(document.getElementById(i).innerHTML.includes("fekete") && !document.getElementById(i).innerHTML==""){;
                 document.getElementById(i).removeAttribute("onclick");
             }
         }
-        for (let j = 0; j < 96; j++) {
-            if(!document.getElementById(j).innerHTML.includes("fekete"))
-                document.getElementById(j).setAttribute("onclick","kiszedes(this)");
-        }
+       korszamlalo++
+       PontUpdateWinCheck()
     }
+
     else if(korszamlalo%2!=0){
         console.log("fekete kor");
         for (let i = 0; i < 96; i++) {
@@ -92,16 +84,20 @@ function whichforduls(){
                 document.getElementById(i).removeAttribute("onclick");
             }
         }
-        for (let i = 0; i < 96; i++) {
-            if(document.getElementById(i).innerHTML.includes("fekete"))
-                document.getElementById(i).setAttribute("onclick","kiszedes(this)");
-        }
+        korszamlalo++;
+        PontUpdateWinCheck()
     }
-    }
+}
+
+function PontUpdateWinCheck() {
+    console.log("dsadas");
+    document.getElementById("feherpont").innerHTML="Feher pontszámai: "+feherpont
+    document.getElementById("feketepont").innerHTML="Fekete pontszámai: "+feketepont
+}
 
 function main(){
-    getkor();
     gen();
     babulerakas();
     vanbabu();
+    PontUpdateWinCheck()
 }

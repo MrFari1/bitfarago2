@@ -5,17 +5,18 @@ class Babu{
         this.matrixhely=matrixhely.split(';').map(Number);
         this.feher=feher;
         this.pont=this.pontPick();
-        this.utes=this.utesPick();
+        if (this.nev.includes("paraszt")) {
+            this.utes=this.utesPick() 
+        }
         this.move=this.movePick();
         this.kiutve=false;
-        //this.src="kepek/"+nev.replace(nev[nev.length-1],'')+".png";
         this.hely=document.querySelector("[data-babu="+"'"+nev+"'"+"]")
     }
 
     movePick(){
+        let moveNums=new Array()
         switch (this.nev.slice(0,2)) {
             case "pa":
-                let moveNums=new Array()
                 for (let i = 1; i < 4; i++) {
                     this.feher ? 
                     moveNums.push(this.matrixhely[0]+i+";"+this.matrixhely[1]) 
@@ -23,42 +24,69 @@ class Babu{
                 }
                 return moveNums;
             case "ba" :
-                return 3;
+                for (let i = 1; i < 13; i++) {
+                    moveNums.push(this.matrixhely[0]+i+";"+this.matrixhely[1]) 
+                    moveNums.push(this.matrixhely[0]-i+";"+this.matrixhely[1]) 
+                    moveNums.push(this.matrixhely[0]+";"+(this.matrixhely[1]+Number(i))) 
+                    moveNums.push(this.matrixhely[0]+";"+(this.matrixhely[1]-Number(i))) 
+                }
+                return moveNums;
             case "kk" :
-                return 2;
+                for (let i = 1; i < 3; i++) {
+                    moveNums.push(this.matrixhely[0]+i+";"+this.matrixhely[1]) 
+                    moveNums.push(this.matrixhely[0]-i+";"+this.matrixhely[1])
+                    moveNums.push(this.matrixhely[0]+";"+(this.matrixhely[1]+Number(i))) 
+                    moveNums.push(this.matrixhely[0]+";"+(this.matrixhely[1]-Number(i))) 
+                    //atlok
+                    moveNums.push(this.matrixhely[0]-i+";"+(this.matrixhely[1]+Number(i))) 
+                    moveNums.push(this.matrixhely[0]+i+";"+(this.matrixhely[1]-Number(i)))
+                    moveNums.push(this.matrixhely[0]-i+";"+(this.matrixhely[1]-Number(i))) 
+                    moveNums.push(this.matrixhely[0]+i+";"+(this.matrixhely[1]+Number(i)))
+                }
+                return moveNums;
             case "ki":
-                return 5;
+                for (let i = 1; i < 13; i++) {
+                    moveNums.push(this.matrixhely[0]+i+";"+this.matrixhely[1]) 
+                    moveNums.push(this.matrixhely[0]-i+";"+this.matrixhely[1])
+                    moveNums.push(this.matrixhely[0]+";"+(this.matrixhely[1]+Number(i))) 
+                    moveNums.push(this.matrixhely[0]+";"+(this.matrixhely[1]-Number(i))) 
+                    //atlok
+                    moveNums.push(this.matrixhely[0]-i+";"+(this.matrixhely[1]+Number(i))) 
+                    moveNums.push(this.matrixhely[0]+i+";"+(this.matrixhely[1]-Number(i)))
+                    moveNums.push(this.matrixhely[0]-i+";"+(this.matrixhely[1]-Number(i))) 
+                    moveNums.push(this.matrixhely[0]+i+";"+(this.matrixhely[1]+Number(i)))
+                }
+                return moveNums;
             case "fu" :
-                return 2;
+                for (let i = 1; i < 13; i++) {
+                    moveNums.push(this.matrixhely[0]-i+";"+(this.matrixhely[1]+Number(i))) 
+                    moveNums.push(this.matrixhely[0]+i+";"+(this.matrixhely[1]-Number(i)))
+                    moveNums.push(this.matrixhely[0]-i+";"+(this.matrixhely[1]-Number(i))) 
+                    moveNums.push(this.matrixhely[0]+i+";"+(this.matrixhely[1]+Number(i)))
+                }
+                return moveNums;
             case "lo" :
-                return 2;
+                moveNums.push(this.matrixhely[0]+2+";"+(this.matrixhely[1]-Number(1)))
+                moveNums.push(this.matrixhely[0]+2+";"+(this.matrixhely[1]+Number(1))) 
+                moveNums.push(this.matrixhely[0]-2+";"+(this.matrixhely[1]-Number(1))) 
+                moveNums.push(this.matrixhely[0]-2+";"+(this.matrixhely[1]+Number(1))) 
+
+                moveNums.push(this.matrixhely[0]+1+";"+(this.matrixhely[1]-Number(2))) 
+                moveNums.push(this.matrixhely[0]+1+";"+(this.matrixhely[1]+Number(2))) 
+                moveNums.push(this.matrixhely[0]-1+";"+(this.matrixhely[1]-Number(2))) 
+                moveNums.push(this.matrixhely[0]-1+";"+(this.matrixhely[1]+Number(2))) 
+                return moveNums;
             default:
                 return "valami nemjo";
         }
     }
 
     utesPick(){
-    
-        switch (this.nev.slice(0,2)) {
-            case "pa":
-                let utesNums=new Array()
-                this.feher ? 
-                utesNums.push(this.matrixhely[0]+1+";"+(this.matrixhely[1]-1)+";"+(this.matrixhely[1]+1)) 
-                : utesNums.push(this.matrixhely[0]-1+";"+(this.matrixhely[1]-1)+";"+(this.matrixhely[1]+1))
-                return utesNums;
-            case "ba" :
-                return 3;
-            case "kk" :
-                return 2;
-            case "ki":
-                return 5;
-            case "fu" :
-                return 2;
-            case "lo" :
-                return 2;
-            default:
-                return "valami nemjo";
-        }
+        let utesNums=new Array()
+        this.feher ? 
+        utesNums.push(this.matrixhely[0]+1+";"+(this.matrixhely[1]-1)+";"+(this.matrixhely[1]+1)) 
+        : utesNums.push(this.matrixhely[0]-1+";"+(this.matrixhely[1]-1)+";"+(this.matrixhely[1]+1))
+        return utesNums;
     }
 
     pontPick(){
@@ -92,6 +120,7 @@ var matrix=new Array();
 var babuMap=new Map();
 var allowedMoves=new Array();
 var allowedHits=new Array();
+var hitelhetok = new Array(); 
 
 function gen(){
     let k = 0;
@@ -136,24 +165,40 @@ function kiszedes(ez){
         aktkep = ez.children[0];
         ez.children[0].remove()
         moveHighlight()
+        if(aktkep.dataset["babu"].includes("paraszt"))
         hitHighlight();
     }
 }
 
 function moveHighlight() {
-    babuMap.get(aktkep.dataset["babu"]).move.forEach(kocka => {
-        try {
-            let temp=kocka.split(';')
-            let id=matrix[temp[0]][temp[1]]
-            let curr=document.getElementById(id)
-            curr.innerText="⬤"
-            curr.style.color="green"
-            allowedMoves.push(id)
-        } catch (error) {
-            console.log("-1");
-        }
+    for (const kocka of babuMap.get(aktkep.dataset["babu"]).move) {
+        let temp = kocka.split(';').map(Number);
+        console.log(temp);
+    
+        if (!(Math.min(...temp) < 0) && temp[1] < 8 && temp[0] < 12) {
+            console.log("bement");
+            try {
+                var id = matrix[temp[0]][temp[1]];
+                let curr = document.getElementById(id);
+                curr.innerText = "⬤";
+                curr.style.color = "green";
+                allowedMoves.push(id);
+            } catch (error) {
+                if (babuMap.get(aktkep.dataset['babu']).feher !== id.feher) {
+                    hitelhetok.push(id);
+                    console.log(document.querySelector("td:first-child[data-babu=" + id.nev + "]"));
+                    let query = document.querySelector("[data-babu=" + id.nev + "]").parentNode;
+                    query.setAttribute("onclick", "berakas(this)");
+                    query.innerHTML += "⬤";
+                    query.style.color = "red";
+                    allowedMoves.push(Number(query.id));
+                    return;
+                }
 
-    });
+            }
+        }
+    }
+   
 }
 
 function hitHighlight() {
@@ -166,8 +211,8 @@ function hitHighlight() {
                 curr.innerText="⬤"
                 curr.style.color="red"
                 allowedHits.push(id)
-            } catch (error) {
-                console.log("-1");
+            } catch (error){
+                console.log("utkozesparaszt");
             }
         });
 
@@ -189,21 +234,37 @@ function attributeSetter() {
 function resetter() {
     allowedMoves.concat(allowedHits).forEach(move => {
         let curr= document.getElementById(move)
-        curr.firstChild.remove()
-        curr.style.color=""
+        // if (!curr.children.length>0) {
+        //     curr.firstChild.remove()
+        //     curr.style.color=""
+        // }
+        if (curr.childNodes[0].data=="⬤") {
+            curr.firstChild.remove()
+            curr.style.color=""
+        }
+        else if(curr.childNodes[1].data=="⬤"){
+            curr.lastChild.remove()
+            curr.style.color=""
+        }
     });
     aktkep=null;
     matrix=[]
+    hitelhetok=[]
     allowedMoves=[]
     allowedHits=[]
 }
 
 
 function berakas(ez){
+    console.log("dwamdwanjjoi");
+    console.log(allowedMoves);
+    
     if(aktkep!=null && allowedMoves.includes(Number(ez.id))){
+        ez.innerHTML="";
         ez.appendChild(aktkep)
         resetter();
         whichfordulsmagyarulkorLefutas();
+
     }
 }
 
@@ -235,7 +296,6 @@ function whichfordulsmagyarulkorLefutas(){
     console.log(korszamlalo);
     if(korszamlalo%2!=0){
         console.log("feher kor");
-
         Array.from(document.getElementsByTagName("td")).forEach(td => {
             if(td.innerHTML.includes("fekete") && !td.innerHTML==""){
                 td.removeAttribute("onclick");
